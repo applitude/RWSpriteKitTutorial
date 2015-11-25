@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9FA77F081C062A8A00864E04 /* background-music-aac.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9FA77F061C062A8A00864E04 /* background-music-aac.caf */; };
+		9FA77F091C062A8A00864E04 /* pew-pew-lei.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9FA77F071C062A8A00864E04 /* pew-pew-lei.caf */; };
 		9FD0BF631C0618DE005327D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD0BF621C0618DE005327D9 /* AppDelegate.swift */; };
-		9FD0BF651C0618DE005327D9 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9FD0BF641C0618DE005327D9 /* GameScene.sks */; };
 		9FD0BF671C0618DE005327D9 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD0BF661C0618DE005327D9 /* GameScene.swift */; };
 		9FD0BF691C0618DE005327D9 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD0BF681C0618DE005327D9 /* GameViewController.swift */; };
 		9FD0BF6C1C0618DE005327D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FD0BF6A1C0618DE005327D9 /* Main.storyboard */; };
@@ -36,9 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9FA77F061C062A8A00864E04 /* background-music-aac.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background-music-aac.caf"; sourceTree = "<group>"; };
+		9FA77F071C062A8A00864E04 /* pew-pew-lei.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pew-pew-lei.caf"; sourceTree = "<group>"; };
 		9FD0BF5F1C0618DE005327D9 /* RWSpriteKitTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RWSpriteKitTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FD0BF621C0618DE005327D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9FD0BF641C0618DE005327D9 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		9FD0BF661C0618DE005327D9 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		9FD0BF681C0618DE005327D9 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		9FD0BF6B1C0618DE005327D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -78,6 +80,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9FA77F161C062B5000864E04 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				9FA77F061C062A8A00864E04 /* background-music-aac.caf */,
+				9FA77F071C062A8A00864E04 /* pew-pew-lei.caf */,
+			);
+			name = Music;
+			sourceTree = "<group>";
+		};
 		9FD0BF561C0618DE005327D9 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +96,7 @@
 				9FD0BF7A1C0618DE005327D9 /* RWSpriteKitTutorialTests */,
 				9FD0BF851C0618DE005327D9 /* RWSpriteKitTutorialUITests */,
 				9FD0BF601C0618DE005327D9 /* Products */,
+				9FA77F161C062B5000864E04 /* Music */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,7 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				9FD0BF621C0618DE005327D9 /* AppDelegate.swift */,
-				9FD0BF641C0618DE005327D9 /* GameScene.sks */,
 				9FD0BF661C0618DE005327D9 /* GameScene.swift */,
 				9FD0BF681C0618DE005327D9 /* GameViewController.swift */,
 				9FD0BF6A1C0618DE005327D9 /* Main.storyboard */,
@@ -235,9 +246,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FD0BF651C0618DE005327D9 /* GameScene.sks in Resources */,
+				9FA77F081C062A8A00864E04 /* background-music-aac.caf in Resources */,
 				9FD0BF711C0618DE005327D9 /* LaunchScreen.storyboard in Resources */,
 				9FD0BF6E1C0618DE005327D9 /* Assets.xcassets in Resources */,
+				9FA77F091C062A8A00864E04 /* pew-pew-lei.caf in Resources */,
 				9FD0BF6C1C0618DE005327D9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -492,6 +504,7 @@
 				9FD0BF8D1C0618DE005327D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9FD0BF8E1C0618DE005327D9 /* Build configuration list for PBXNativeTarget "RWSpriteKitTutorialTests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +513,7 @@
 				9FD0BF901C0618DE005327D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9FD0BF911C0618DE005327D9 /* Build configuration list for PBXNativeTarget "RWSpriteKitTutorialUITests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +522,7 @@
 				9FD0BF931C0618DE005327D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

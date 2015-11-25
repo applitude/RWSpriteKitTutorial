@@ -8,38 +8,89 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
-    override func didMoveToView(view: SKView) {
-        /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!";
-        myLabel.fontSize = 45;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
-        
-        self.addChild(myLabel)
+func + (left: CGPoint, right: CGPoint) -> CGPoint {
+    return CGPoint(x: left.x + right.x, y: left.y + right.y)
+}
+
+func - (left: CGPoint, right: CGPoint) -> CGPoint {
+    return CGPoint(x: left.x - right.x, y: left.y - right.y)
+}
+
+func * (point: CGPoint, scalar: CGFloat) -> CGPoint {
+    return CGPoint(x: point.x * scalar, y: point.y * scalar)
+}
+
+func / (point: CGPoint, scalar: CGFloat) -> CGPoint {
+    return CGPoint(x: point.x / scalar, y: point.y / scalar)
+}
+
+#if !(arch(x86_64) || arch(arm64))
+func sqrt(a: CGFloat) -> CGFloat {
+    return CGFloat(sqrtf(Float(a)))
+}
+#endif
+
+extension CGPoint {
+    func length() -> CGFloat {
+        return sqrt(x*x + y*y)
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-       /* Called when a touch begins */
+    func normalized() -> CGPoint {
+        return self / length()
+    }
+}
+
+class GameScene: SKScene {
+    
+    let player = SKSpriteNode(imageNamed: "player")
+    
+    override func didMoveToView(view: SKView) {
         
-        for touch in touches {
-            let location = touch.locationInNode(self)
-            
-            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-            
-            sprite.xScale = 0.5
-            sprite.yScale = 0.5
-            sprite.position = location
-            
-            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-            
-            sprite.runAction(SKAction.repeatActionForever(action))
-            
-            self.addChild(sprite)
-        }
+        backgroundColor = SKColor.blueColor()
+        player.position = CGPoint(x: size.width * 0.1, y: size.height * 0.5)
+        addChild(player)
+        
+        runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(addMonster), SKAction.waitForDuration(1.0)])))
+        
     }
-   
-    override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
+    
+    func random() -> CGFloat {
+        return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
     }
+    
+    func random(min min: CGFloat, max: CGFloat) -> CGFloat {
+        return random() * (max-min) + min
+    }
+    
+    func addMonster() {
+        
+        // Create sprite
+        let monster = SKSpriteNode(imageNamed: "monster")
+        
+        // Determine where to spawn the monster along the Y axis
+        let actualY = random(min: monster.size.height/2, max: size.height - monster.size.height/2)
+        
+        // Position the monster slightly off-screen along the right edge,
+        // and along a random position along the Y axis as calculated above
+        monster.position = CGPoint(x: size.width + monster.size.width/2, y: actualY)
+        
+        // Add the monster to the scene
+        addChild(monster)
+        
+        // Determine speed of the monster
+        let actualDuration = random(min: CGFloat(2.0), max: CGFloat(4.0))
+        
+        // Create the actions
+        let actionMove = SKAction.moveTo(CGPoint(x: -monster.size.width/2, y: actualY), duration: NSTimeInterval(actualDuration))
+        let actionMoveDone = SKAction.removeFromParent()
+        monster.runAction(SKAction.sequence([actionMove, actionMoveDone]))
+        
+    }
+    
+    
+    /*
+    Neste steg i tutorialen (http://www.raywenderlich.com/119815/sprite-kit-swift-2-tutorial-for-beginners):
+    kodelinjene etter "Next, add a new method to the file:"
+    */
+    
 }
