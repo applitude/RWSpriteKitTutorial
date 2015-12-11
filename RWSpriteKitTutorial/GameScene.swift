@@ -40,7 +40,14 @@ extension CGPoint {
     }
 }
 
-class GameScene: SKScene {
+struct PhysicsCategory {
+    static let None:        UInt32 = 0
+    static let All:         UInt32 = UInt32.max
+    static let Monster:     UInt32 = 0b1 // 1
+    static let Projectile:  UInt32 = 0b10 // 2
+}
+
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let player = SKSpriteNode(imageNamed: "player")
     
@@ -49,6 +56,9 @@ class GameScene: SKScene {
         backgroundColor = SKColor.blueColor()
         player.position = CGPoint(x: size.width * 0.1, y: size.height * 0.5)
         addChild(player)
+        
+        physicsWorld.gravity = CGVectorMake(0, 0)
+        physicsWorld.contactDelegate = self
         
         runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(addMonster), SKAction.waitForDuration(1.0)])))
         
@@ -87,10 +97,41 @@ class GameScene: SKScene {
         
     }
     
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        // Choose one of the touches to work with
+        guard let touch = touches.first else {
+            return
+        }
+        let touchLocation = touch.locationInNode(self)
+        
+        // Set up initial location of projectile
+        let projectile = SKSpriteNode(imageNamed: "projectile")
+        projectile.position = player.position
+        
+        // Determine offset of location to projectile
+        let offset = touchLocation - projectile.position
+        
+        // Bail out if you are shooting down or backwards
+        if (offset.x < 0) { return }
+        
+        // OK to add now - you've double checked position
+        addChild(projectile)
+        
+        // Get the direction of where to shoot
+        let direction = offset.normalized()
+        
+        // Make it shoot far enough to be guaranteed off screen
+        let shootAmount = direction * 1000
+        
+        // Add the shoot amount to the current position
+        let realDest = shootAmount + projectile.position
+        
+        // Create the actions
+        let actionMove = SKAction.moveTo(realDest, duration: 2.0)
+        let actionMoveDone = SKAction.removeFromParent()
+        projectile.runAction(SKAction.sequence([actionMove, actionMoveDone]))
+    }
     
-    /*
-    Neste steg i tutorialen (http://www.raywenderlich.com/119815/sprite-kit-swift-2-tutorial-for-beginners):
-    kodelinjene etter "Next, add a new method to the file:"
-    */
     
 }
