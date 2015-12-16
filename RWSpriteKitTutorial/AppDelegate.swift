@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  RWSpriteKitTutorial
-//
-//  Created by Gaute Solheim on 25.11.2015.
-//  Copyright © 2015 Gaute Solheim. All rights reserved.
-//
 
 import UIKit
 

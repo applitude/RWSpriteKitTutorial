@@ -1,10 +1,3 @@
-//
-//  GameViewController.swift
-//  RWSpriteKitTutorial
-//
-//  Created by Gaute Solheim on 25.11.2015.
-//  Copyright (c) 2015 Gaute Solheim. All rights reserved.
-//
 
 import UIKit
 import SpriteKit
@@ -26,6 +19,5 @@ class GameViewController: UIViewController {
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
-    
     
 }
